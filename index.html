@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
   
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
+
   <title>최병민 ❤️ 김현수 결혼 축하 파티 초대장</title>
   <meta property="og:title" content="최병민 ❤️ 김현수 결혼 축하 파티 초대장">
   <meta property="og:description" content="2026. 10. 17. (Sat) 16:00 ~ 20:00 @신논현역 29펍 4호점">
@@ -36,8 +36,9 @@
         <h1 class="text-2xl font-bold tracking-tight text-stone-800">2026. 10. 17. (Sat)</h1>
         <p class="text-sm font-semibold text-rose-500">16:00 ~ 20:00 <span class="text-xs font-normal text-stone-400">(퇴근은 자유)</span></p>
         
-        <div class="w-full h-80 bg-stone-100 rounded-2xl relative overflow-hidden shadow-sm border border-stone-100 mt-4">
-          <img src="main.jpg" alt="크로아티아" class="w-full h-full object-cover">
+        <div class="w-full h-80 bg-stone-100 rounded-2xl flex flex-col items-center justify-center border-2 border-dashed border-stone-200 text-stone-400 relative overflow-hidden mt-4">
+          <i class="fa-regular fa-image text-3xl mb-2"></i>
+          <span class="text-xs">추후에 제공해 주실 메인 사진 들어갈 공간</span>
         </div>
       </section>
 
@@ -223,11 +224,15 @@
   </div>
 
   <script>
-    // ★ 본인의 구글 웹 앱 URL을 지정해 주세요.
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxf_89GDjSdXeaFfhSK0cTNnnIqtBtyi5HU6ldeMkmNDvLUCj5G_k2v_Vdm7FcWHv4dIw/exec";
+    // ★ 구글 웹 앱 URL을 지정해 주세요.
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwyDxMBdq5CpXNtHYktMJBels0Gql38hx6JmWcypRqTde8hemM54PKK_Ldh0x1EX4vJ/exec";
+
+    // 접속 시 한 번에 가져와서 보관할 RSVP 캐시 데이터
+    let cachedRsvpList = [];
 
     window.onload = function() {
-      loadQnaData();
+      // 접속 시 전체 데이터(QnA + RSVP 명단) 미리 불러오기
+      loadInitialData();
 
       if (!localStorage.getItem('rsvp_submitted')) {
         openRsvpModal();
@@ -241,15 +246,21 @@
       document.getElementById('rsvp-modal').classList.add('hidden');
     }
 
-    // 구글 시트 Q&A 데이터 로드
-    async function loadQnaData() {
-      const container = document.getElementById('qna-container');
+    // 초기 웹 로드 시 데이터 한번에 가져오기
+    async function loadInitialData() {
+      const qnaContainer = document.getElementById('qna-container');
       try {
         const res = await fetch(GOOGLE_SCRIPT_URL);
         const data = await res.json();
         
+        // 1. RSVP 명단 캐싱
+        if (data.rsvpList) {
+          cachedRsvpList = data.rsvpList;
+        }
+
+        // 2. QnA 출력
         if (data.qna && data.qna.length > 0) {
-          container.innerHTML = data.qna.map(item => `
+          qnaContainer.innerHTML = data.qna.map(item => `
             <div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 space-y-1.5 text-xs">
               <div class="font-bold text-stone-800 flex items-center gap-1.5">
                 <span class="text-rose-500 font-bold">Q.</span> ${item.q}
@@ -260,11 +271,11 @@
             </div>
           `).join('');
         } else {
-          container.innerHTML = `<div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 text-xs text-stone-400 text-center">등록된 Q&A가 없습니다.</div>`;
+          qnaContainer.innerHTML = `<div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 text-xs text-stone-400 text-center">등록된 Q&A가 없습니다.</div>`;
         }
       } catch (err) {
-        console.error("QnA 로드 실패:", err);
-        container.innerHTML = `<div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 text-xs text-stone-400 text-center">Q&A를 불러오는 데 실패했습니다.</div>`;
+        console.error("초기 데이터 로드 실패:", err);
+        qnaContainer.innerHTML = `<div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 text-xs text-stone-400 text-center">Q&A를 불러오는 데 실패했습니다.</div>`;
       }
     }
 
@@ -282,23 +293,18 @@
         return;
       }
 
+      // 이미 접속 시 받아둔 데이터로 로컬에서 즉시 중복 판단 (대기 시간 0초)
+      const exists = cachedRsvpList.some(r => r.side === side && r.name === name && String(r.phone) === String(phone));
+
+      if (exists) {
+        const confirmUpdate = confirm(`[${side}] ${name}님(${phone})의 기존 응답 내역이 있습니다.\n새로운 내용으로 업데이트하시겠습니까?`);
+        if (!confirmUpdate) return;
+      }
+
       submitBtn.disabled = true;
-      submitBtn.innerText = "5초 정도 기다려주세요";
+      submitBtn.innerText = "제출 중...";
 
       try {
-        const checkUrl = `${GOOGLE_SCRIPT_URL}?side=${encodeURIComponent(side)}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
-        const res = await fetch(checkUrl);
-        const result = await res.json();
-
-        if (result.exists) {
-          const confirmUpdate = confirm(`[${side}] ${name}님(${phone})의 기존 응답 내역이 있습니다.\n새로운 내용으로 업데이트하시겠습니까?`);
-          if (!confirmUpdate) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = "제출하기";
-            return;
-          }
-        }
-
         const postData = { side, name, phone, count, status };
 
         await fetch(GOOGLE_SCRIPT_URL, {
@@ -306,6 +312,11 @@
           headers: { "Content-Type": "text/plain" },
           body: JSON.stringify(postData)
         });
+
+        // 로컬 캐시 업데이트
+        if (!exists) {
+          cachedRsvpList.push({ side, name, phone });
+        }
 
         alert(`${name}님, 참석 응답이 정상적으로 제출되었습니다!`);
         localStorage.setItem('rsvp_submitted', 'true');
