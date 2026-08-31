@@ -199,7 +199,7 @@
       document.getElementById('rsvp-modal').classList.add('hidden');
     }
 
-    async function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
       e.preventDefault();
       const submitBtn = document.getElementById('submit-btn');
       const side = document.querySelector('input[name="rsvp-side"]:checked').value;
@@ -214,10 +214,11 @@
       }
 
       submitBtn.disabled = true;
-      submitBtn.innerText = "조회 중...";
+      // '조회 중...' 대신 지정하신 안내 문구로 변경
+      submitBtn.innerText = "5초 정도 기다려주세요";
 
       try {
-        // 1. 기존 제출 내역이 있는지 먼저 조회
+        // 1. 기존 제출 내역 중복 조회
         const checkUrl = `${GOOGLE_SCRIPT_URL}?side=${encodeURIComponent(side)}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}`;
         const res = await fetch(checkUrl);
         const result = await res.json();
@@ -232,7 +233,6 @@
         }
 
         // 2. 제출 또는 업데이트 진행
-        submitBtn.innerText = "제출 중...";
         const postData = { side, name, phone, count, status };
 
         await fetch(GOOGLE_SCRIPT_URL, {
