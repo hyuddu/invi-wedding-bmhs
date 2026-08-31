@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="h-full">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
   <!-- 파비콘: 축하 폭죽 이모지 -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
@@ -16,121 +16,152 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
-    body { font-family: 'Noto Sans KR', sans-serif; }
+    
+    html, body {
+      font-family: 'Noto Sans KR', sans-serif;
+      height: 100%;
+      overflow: hidden;
+    }
     .font-serif-title { font-family: 'Playfair Display', serif; }
+    
+    /* 풀페이지 스냅 스크롤 설정 */
+    .snap-container {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100vh;
+      scroll-behavior: smooth;
+    }
+    .snap-section {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      height: 100vh;
+    }
+    
+    /* 스크롤바 숨기기 */
+    .snap-container::-webkit-scrollbar { display: none; }
+    .snap-container { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-stone-50 text-stone-800 antialiased min-h-screen flex justify-center">
+<body class="bg-stone-900 text-stone-800 antialiased flex justify-center h-full">
 
-  <div class="w-full max-w-md bg-white min-h-screen shadow-xl flex flex-col justify-between relative pb-28">
+  <!-- 모바일 뷰 컨테이너 -->
+  <div class="w-full max-w-md bg-white h-full relative shadow-2xl flex flex-col overflow-hidden">
     
     <!-- 네비게이션 -->
-    <div class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-stone-100 flex justify-between items-center px-5 py-4">
-      <span class="font-serif-title text-rose-500 font-bold tracking-wider">WEDDING PARTY</span>
-      <button onclick="openRsvpModal()" class="text-xs bg-rose-50 text-rose-600 px-3.5 py-1.5 rounded-full font-medium border border-rose-200 shadow-sm">
+    <div class="absolute top-0 left-0 right-0 z-30 bg-white/80 backdrop-blur-md border-b border-stone-100 flex justify-between items-center px-5 py-3.5">
+      <span class="font-serif-title text-rose-500 font-bold tracking-wider text-sm">WEDDING PARTY</span>
+      <button onclick="openRsvpModal()" class="text-xs bg-rose-50 hover:bg-rose-100 text-rose-600 px-3.5 py-1.5 rounded-full font-medium border border-rose-200 transition shadow-sm">
         참석 여부 등록
       </button>
     </div>
 
-    <!-- 손님용 콘텐츠 -->
-    <div class="space-y-12 pb-20">
+    <!-- 풀페이지 스크롤 영역 -->
+    <div class="snap-container w-full h-full pt-14">
 
-      <!-- 메인 상단 & main.jpg 사진 영역 -->
-      <section class="text-center px-6 pt-12">
-        <p class="font-serif-title text-rose-400 tracking-widest text-sm uppercase mb-1">Wedding Party Invitation</p>
-        <h1 class="text-2xl font-bold tracking-tight text-stone-800">2026. 10. 17. (Sat)</h1>
-        <p class="text-sm font-semibold text-rose-500 mt-1">16:00 ~ 20:00 <span class="text-xs font-normal text-stone-400">(퇴근은 자유)</span></p>
-        
-        <!-- 날짜와 사진 사이 간격 -->
-        <div class="w-full h-80 bg-stone-100 rounded-3xl relative overflow-hidden shadow-sm border border-stone-100 mt-12">
+      <!-- PAGE 1: 메인 상단 & main.jpg 사진 -->
+      <section class="snap-section w-full flex flex-col justify-between p-6 pt-6 pb-12 text-center bg-gradient-to-b from-stone-50 to-rose-50/30">
+        <div class="space-y-2 mt-2">
+          <p class="font-serif-title text-rose-400 tracking-widest text-xs uppercase">Wedding Party Invitation</p>
+          <h1 class="text-2xl font-bold tracking-tight text-stone-800">2026. 10. 17. (Sat)</h1>
+          <p class="text-xs font-semibold text-rose-500">16:00 ~ 20:00 <span class="font-normal text-stone-400">(퇴근은 자유)</span></p>
+        </div>
+
+        <div class="w-full my-auto h-[55vh] rounded-3xl overflow-hidden shadow-lg border border-white/80 relative">
           <img src="main.jpg" alt="최병민 김현수 메인 사진" class="w-full h-full object-cover">
+        </div>
+
+        <div class="text-stone-300 text-xs animate-bounce flex flex-col items-center gap-1 pb-2">
+          <span class="text-[10px] tracking-wider uppercase text-stone-400">Scroll Down</span>
+          <i class="fa-solid fa-chevron-down"></i>
         </div>
       </section>
 
-      <!-- 소개글 및 파티 수칙 -->
-      <section class="px-6 text-center">
+      <!-- PAGE 2: 스토리 & 파티 선언 -->
+      <section class="snap-section w-full flex flex-col justify-center items-center p-8 text-center bg-white space-y-12">
         
-        <!-- From waves... 박스 -->
-        <div class="bg-rose-50/60 p-7 rounded-3xl border border-rose-100/80 space-y-3 mt-4">
-          <p class="font-serif-title font-bold text-rose-500 text-base tracking-wide">“From waves🏄 to forever...❤️”</p>
-          <p class="text-xs text-stone-600 leading-normal">
+        <!-- From waves 박스 -->
+        <div class="w-full bg-rose-50/70 p-8 rounded-3xl border border-rose-100 shadow-sm space-y-3">
+          <p class="font-serif-title font-bold text-rose-500 text-lg tracking-wide">“From waves🏄 to forever...❤️”</p>
+          <p class="text-xs text-stone-600 leading-relaxed font-light">
             24년 12월 끝자락, 파도를 찾아 떠난 발리에서<br>
             평생의 동반자를 찾았지 뭐야. 😏
           </p>
         </div>
 
-        <!-- 간격을 기존 36에서 절반인 18로 축소 -->
-        <div class="my-18">
-          <div class="w-12 h-[1px] bg-rose-200 mx-auto mb-8"></div>
-          
-          <div class="space-y-4 text-sm text-stone-700">
-            <p class="font-bold text-lg text-rose-600">우리~ 결혼해요~ 🎉</p>
-            <p class="text-xs text-stone-600 leading-normal font-light">
-              앞으로도 우리 곁에 있을 여러분들과<br>
-              격식 차린 예식 대신 잔 들고 웃고 떠드는 파티로<br>
-              축하받고 싶어요.
-            </p>
-          </div>
-        </div>
+        <div class="w-12 h-[1px] bg-rose-200"></div>
 
-        <!-- [파티 참가 수칙] 박스 -->
-        <div class="mt-12">
-          <div class="bg-stone-50 p-7 rounded-3xl border border-stone-200/70 text-left space-y-4 shadow-sm">
-            <p class="font-bold text-stone-800 text-xs flex items-center gap-2 mb-2">
-              <i class="fa-solid fa-list-check text-rose-500"></i> [파티 참가 수칙]
-            </p>
-            
-            <ul class="text-xs text-stone-600 space-y-3 font-light leading-normal">
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-rose-500">1.</span>
-                <span><strong>드레스 코드:</strong> Black or White <span class="text-[11px] text-stone-400 block mt-1">(회색까지도 가능~)</span></span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-rose-500">2.</span>
-                <span>맛있는 음식과 음료 마음껏 즐기기</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="font-bold text-rose-500">3.</span>
-                <span>우리 위해 축하해주고, 웃고 떠들고 잔뜩 행복하기</span>
-              </li>
-            </ul>
-
-            <!-- 주의 문구 -->
-            <div class="pt-5 border-t border-stone-200/60 mt-5 text-center">
-              <p class="text-xs font-medium text-amber-700 leading-relaxed">
-                <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1"></i>
-                축의금 봉투는 일단 넣어둬!<br>
-                <span class="text-[11px] text-stone-500 font-light block mt-1">대신 우리한테 해줄 축하메시지 한문장 준비해와서 글로 남겨줘</span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 마지막 멘트: 버튼 효과 없애고 텍스트 크기 커졌다 작아지는(animate-pulse) 효과 적용 -->
-        <div class="mt-36 mb-6">
-          <p class="text-base font-bold text-stone-800 animate-pulse tracking-wide inline-block">
-            10월 17일!!! 배고픈 상태로 헤쳐모여! 🎉🍻
+        <!-- 우리 결혼해요 -->
+        <div class="space-y-4">
+          <h2 class="font-bold text-xl text-rose-600 tracking-tight">우리~ 결혼해요~ 🎉</h2>
+          <p class="text-xs text-stone-600 leading-relaxed font-light">
+            앞으로도 우리 곁에 있을 여러분들과<br>
+            격식 차린 예식 대신 잔 들고 웃고 떠드는 파티로<br>
+            축하받고 싶어요.
           </p>
         </div>
 
       </section>
 
-      <!-- 일시 & 장소 및 지도 영역 -->
-      <section class="px-6 space-y-8 pt-8">
-        <div class="bg-stone-50 rounded-3xl p-7 border border-stone-100 space-y-5 text-sm">
-          <h2 class="font-bold text-stone-800 text-base flex items-center gap-2">
-            <i class="fa-regular fa-clock text-rose-400"></i> 일시 & 장소
-          </h2>
-          <div class="space-y-3 text-stone-600 text-xs leading-normal">
-            <p><span class="font-semibold text-stone-800">일시:</span> 2026. 10. 17. (Sat) 16:00 ~ 20:00</p>
-            <p><span class="font-semibold text-stone-800">장소:</span> 신논현역 29펍 4호점</p>
-            <p><span class="font-semibold text-stone-800">주소:</span> 서울특별시 강남구 강남대로110길 14</p>
-            <p class="text-xs text-rose-500 font-medium pt-2"><i class="fa-solid fa-square-parking mr-1"></i> 주차는 불가하오니 대중교통 이용을 권장합니다.</p>
+      <!-- PAGE 3: 파티 참가 수칙 & 헤쳐모여 -->
+      <section class="snap-section w-full flex flex-col justify-center p-6 bg-stone-50/50 space-y-8">
+        
+        <!-- 수칙 카드 -->
+        <div class="bg-white p-7 rounded-3xl border border-stone-200/80 shadow-md space-y-5">
+          <p class="font-bold text-stone-800 text-xs flex items-center gap-2 border-b border-stone-100 pb-3">
+            <i class="fa-solid fa-list-check text-rose-500 text-sm"></i> [파티 참가 수칙]
+          </p>
+          
+          <ul class="text-xs text-stone-600 space-y-3.5 font-light leading-relaxed">
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-rose-500">1.</span>
+              <span><strong>드레스 코드:</strong> Black or White <span class="text-[11px] text-stone-400 block mt-0.5">(회색까지도 가능~)</span></span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-rose-500">2.</span>
+              <span>맛있는 음식과 음료 마음껏 즐기기</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="font-bold text-rose-500">3.</span>
+              <span>우리 위해 축하해주고, 웃고 떠들고 잔뜩 행복하기</span>
+            </li>
+          </ul>
+
+          <div class="pt-4 border-t border-stone-100 text-center">
+            <p class="text-xs font-medium text-amber-800 leading-relaxed">
+              <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1"></i>
+              축의금 봉투는 일단 넣어둬!<br>
+              <span class="text-[11px] text-stone-400 font-light block mt-1">대신 우리한테 해줄 축하메시지 한문장 준비해와서 글로 남겨줘</span>
+            </p>
           </div>
         </div>
 
-        <!-- 지도 (마커 핀) -->
-        <div class="rounded-3xl overflow-hidden border border-stone-200 shadow-sm h-64 relative mt-6">
+        <!-- 헤쳐모여 카드 (펄스 효과) -->
+        <div class="text-center py-2">
+          <div class="bg-gradient-to-r from-rose-50 to-amber-50 border border-rose-200/60 p-4 rounded-2xl shadow-sm inline-block animate-pulse">
+            <p class="text-sm font-bold text-stone-800 tracking-wide">
+              ✨ 10월 17일!!! 배고픈 상태로 헤쳐모여! 🎉🍻
+            </p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- PAGE 4: 일시 & 장소 및 지도 -->
+      <section class="snap-section w-full flex flex-col justify-center p-6 bg-white space-y-4">
+        <div class="bg-stone-50 rounded-3xl p-6 border border-stone-100 space-y-3 text-xs">
+          <h2 class="font-bold text-stone-800 text-sm flex items-center gap-2">
+            <i class="fa-regular fa-clock text-rose-400"></i> 일시 & 장소
+          </h2>
+          <div class="space-y-1.5 text-stone-600">
+            <p><span class="font-semibold text-stone-800">일시:</span> 2026. 10. 17. (Sat) 16:00 ~ 20:00</p>
+            <p><span class="font-semibold text-stone-800">장소:</span> 신논현역 29펍 4호점</p>
+            <p><span class="font-semibold text-stone-800">주소:</span> 서울특별시 강남구 강남대로110길 14</p>
+            <p class="text-[11px] text-rose-500 font-medium pt-1"><i class="fa-solid fa-square-parking mr-1"></i> 주차는 불가하오니 대중교통 이용을 권장합니다.</p>
+          </div>
+        </div>
+
+        <!-- 지도 -->
+        <div class="rounded-3xl overflow-hidden border border-stone-200 shadow-sm h-52 relative">
           <iframe 
             src="https://maps.google.com/maps?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EA%B0%95%EB%82%A8%EB%8C%80%EB%A1%9C110%EA%B8%B8%2014&t=&z=17&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
@@ -142,47 +173,47 @@
           </iframe>
         </div>
 
-        <!-- 지도 앱 바로가기 버튼 -->
-        <div class="grid grid-cols-2 gap-3 text-xs font-medium pt-2">
-          <a href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EA%B0%95%EB%82%A8%EB%8C%80%EB%A1%9C110%EA%B8%B8%2014" target="_blank" class="py-3.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-2xl flex items-center justify-center gap-1.5 hover:bg-emerald-100 transition shadow-sm">
-            <i class="fa-solid fa-location-dot"></i> 네이버 지도로 보기
+        <!-- 지도 버튼 -->
+        <div class="grid grid-cols-2 gap-2 text-xs font-medium">
+          <a href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EA%B0%95%EB%82%A8%EB%8C%80%EB%A1%9C110%EA%B8%B8%2014" target="_blank" class="py-3 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-2xl flex items-center justify-center gap-1.5 hover:bg-emerald-100 transition shadow-sm">
+            <i class="fa-solid fa-location-dot"></i> 네이버 지도
           </a>
-          <a href="https://map.kakao.com/link/search/서울특별시 강남구 강남대로110길 14" target="_blank" class="py-3.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-2xl flex items-center justify-center gap-1.5 hover:bg-amber-100 transition shadow-sm">
-            <i class="fa-solid fa-map-pin"></i> 카카오 맵으로 보기
+          <a href="https://map.kakao.com/link/search/서울특별시 강남구 강남대로110길 14" target="_blank" class="py-3 bg-amber-50 text-amber-700 border border-amber-200 rounded-2xl flex items-center justify-center gap-1.5 hover:bg-amber-100 transition shadow-sm">
+            <i class="fa-solid fa-map-pin"></i> 카카오 맵
           </a>
         </div>
       </section>
 
-      <!-- Q&A 섹션 -->
-      <section class="px-6 space-y-6">
-        <h2 class="font-bold text-stone-800 text-base flex items-center gap-2">
-          <i class="fa-regular fa-circle-question text-rose-400"></i> Q & A
-        </h2>
-        <div id="qna-container" class="space-y-4">
-          <div class="p-5 rounded-3xl bg-stone-50 border border-stone-100 text-xs text-stone-400 text-center">
-            Q&A를 불러오는 중입니다...
+      <!-- PAGE 5: Q&A & 참석 버튼 -->
+      <section class="snap-section w-full flex flex-col justify-between p-6 pb-8 bg-stone-50/30">
+        <div class="space-y-4 pt-4">
+          <h2 class="font-bold text-stone-800 text-sm flex items-center gap-2">
+            <i class="fa-regular fa-circle-question text-rose-400"></i> Q & A
+          </h2>
+          <div id="qna-container" class="space-y-3 max-h-[50vh] overflow-y-auto pr-1">
+            <div class="p-4 rounded-2xl bg-white border border-stone-100 text-xs text-stone-400 text-center">
+              Q&A를 불러오는 중입니다...
+            </div>
           </div>
         </div>
-      </section>
 
-      <!-- 참석 버튼 -->
-      <section class="px-6 pt-8 text-center">
-        <button onclick="openRsvpModal()" class="w-full py-4 bg-rose-500 hover:bg-rose-600 text-white font-medium rounded-2xl shadow-lg transition text-sm tracking-wide">
-          참석 여부 제출하기
-        </button>
+        <div class="space-y-4">
+          <button onclick="openRsvpModal()" class="w-full py-4 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-2xl shadow-lg transition text-sm tracking-wide">
+            참석 여부 제출하기
+          </button>
+          
+          <footer class="text-center text-[10px] text-stone-400">
+            © 2026 Invi-Wedding Party All rights reserved.
+          </footer>
+        </div>
       </section>
 
     </div>
 
-    <!-- 풋터 -->
-    <footer class="text-center text-[11px] text-stone-400 py-6 border-t border-stone-100">
-      © 2026 Invi-Wedding Party All rights reserved.
-    </footer>
-
   </div>
 
   <!-- 참석 입력 팝업 모달 -->
-  <div id="rsvp-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+  <div id="rsvp-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-3xl w-full max-w-sm p-7 space-y-5 shadow-2xl relative">
       <button onclick="closeRsvpModal()" class="absolute top-5 right-5 text-stone-400 hover:text-stone-600">
         <i class="fa-solid fa-xmark text-lg"></i>
@@ -281,21 +312,21 @@
 
         if (data.qna && data.qna.length > 0) {
           qnaContainer.innerHTML = data.qna.map(item => `
-            <div class="p-5 rounded-3xl bg-stone-50 border border-stone-100 space-y-2 text-xs">
+            <div class="p-4 rounded-2xl bg-white border border-stone-100 space-y-1.5 text-xs shadow-sm">
               <div class="font-bold text-stone-800 flex items-center gap-2">
                 <span class="text-rose-500 font-bold">Q.</span> ${item.q}
               </div>
-              <div class="text-stone-600 pl-5 font-light leading-normal">
+              <div class="text-stone-600 pl-5 font-light leading-relaxed">
                 ${item.a}
               </div>
             </div>
           `).join('');
         } else {
-          qnaContainer.innerHTML = `<div class="p-5 rounded-3xl bg-stone-50 border border-stone-100 text-xs text-stone-400 text-center">등록된 Q&A가 없습니다.</div>`;
+          qnaContainer.innerHTML = `<div class="p-4 rounded-2xl bg-white border border-stone-100 text-xs text-stone-400 text-center">등록된 Q&A가 없습니다.</div>`;
         }
       } catch (err) {
         console.error("초기 데이터 로드 실패:", err);
-        qnaContainer.innerHTML = `<div class="p-5 rounded-3xl bg-stone-50 border border-stone-100 text-xs text-stone-400 text-center">Q&A를 불러오는 데 실패했습니다.</div>`;
+        qnaContainer.innerHTML = `<div class="p-4 rounded-2xl bg-white border border-stone-100 text-xs text-stone-400 text-center">Q&A를 불러오는 데 실패했습니다.</div>`;
       }
     }
 
