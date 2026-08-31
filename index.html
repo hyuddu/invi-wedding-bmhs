@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <!-- 파비콘: 축하 폭죽 이모지 -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
 
+  <!-- 카카오톡/링크 공유 프리뷰 설정 -->
   <title>최병민 ❤️ 김현수 결혼 축하 파티 초대장</title>
   <meta property="og:title" content="최병민 ❤️ 김현수 결혼 축하 파티 초대장">
   <meta property="og:description" content="2026. 10. 17. (Sat) 16:00 ~ 20:00 @신논현역 29펍 4호점">
@@ -20,8 +22,9 @@
 </head>
 <body class="bg-stone-50 text-stone-800 antialiased min-h-screen flex justify-center">
 
-  <div class="w-full max-w-md bg-white min-h-screen shadow-xl flex flex-col justify-between relative pb-24">
+  <div class="w-full max-w-md bg-white min-h-screen shadow-xl flex flex-col justify-between relative pb-28">
     
+    <!-- 네비게이션 -->
     <div class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-stone-100 flex justify-between items-center px-5 py-4">
       <span class="font-serif-title text-rose-500 font-bold tracking-wider">WEDDING PARTY</span>
       <button onclick="openRsvpModal()" class="text-xs bg-rose-50 text-rose-600 px-3.5 py-1.5 rounded-full font-medium border border-rose-200 shadow-sm">
@@ -29,50 +32,58 @@
       </button>
     </div>
 
-    <div class="space-y-20 pb-16">
+    <!-- 손님용 콘텐츠 (섹션 간 여백: space-y-24로 더 확장) -->
+    <div class="space-y-24 pb-20">
 
+      <!-- 메인 상단 & main.jpg 사진 영역 -->
       <section class="text-center px-6 pt-12 space-y-4">
         <p class="font-serif-title text-rose-400 tracking-widest text-sm uppercase mb-1">Wedding Party Invitation</p>
         <h1 class="text-2xl font-bold tracking-tight text-stone-800">2026. 10. 17. (Sat)</h1>
         <p class="text-sm font-semibold text-rose-500">16:00 ~ 20:00 <span class="text-xs font-normal text-stone-400">(퇴근은 자유)</span></p>
         
-        <div class="w-full h-80 bg-stone-100 rounded-3xl relative overflow-hidden shadow-sm border border-stone-100 mt-6">
+        <!-- main.jpg 사진 영역 -->
+        <div class="w-full h-80 bg-stone-100 rounded-3xl relative overflow-hidden shadow-sm border border-stone-100 mt-8">
           <img src="main.jpg" alt="최병민 김현수 메인 사진" class="w-full h-full object-cover">
         </div>
       </section>
 
-      <section class="px-6 space-y-12 text-center">
+      <!-- 소개글 및 파티 수칙 (leading-normal 지정 + 넓은 바깥 여백 mt/py 적용) -->
+      <section class="px-6 text-center">
         
+        <!-- 메인 캐치프레이즈 박스 -->
         <div class="bg-rose-50/60 p-7 rounded-3xl border border-rose-100/80 space-y-3">
           <p class="font-serif-title font-bold text-rose-500 text-base tracking-wide">“From waves🏄 to forever...❤️”</p>
-          <p class="text-xs text-stone-600 leading-loose">
+          <p class="text-xs text-stone-600 leading-normal">
             24년 12월 끝자락, 파도를 찾아 떠난 발리에서<br>
             평생의 동반자를 찾았지 뭐야. 😏
           </p>
         </div>
 
-        <div class="py-4">
+        <!-- 구분선 (위아래 여백 py-10 확장) -->
+        <div class="py-10">
           <div class="w-12 h-[1px] bg-rose-200 mx-auto"></div>
         </div>
 
+        <!-- 본문 문구 -->
         <div class="space-y-4 text-sm text-stone-700 py-2">
           <p class="font-bold text-lg text-rose-600">우리~ 결혼해요~ 🎉</p>
-          <p class="text-xs text-stone-600 leading-loose font-light">
+          <p class="text-xs text-stone-600 leading-normal font-light">
             앞으로도 우리 곁에 있을 여러분들과<br>
             격식 차린 예식 대신 잔 들고 웃고 떠드는 파티로<br>
             축하받고 싶어요.
           </p>
         </div>
 
-        <div class="pt-6">
+        <!-- 수칙 카드 상단 여백(mt-12) 확장 -->
+        <div class="mt-12">
           <div class="bg-stone-50 p-7 rounded-3xl border border-stone-200/70 text-left space-y-4 shadow-sm">
             <p class="font-bold text-stone-800 text-xs flex items-center gap-2 mb-2">
               <i class="fa-solid fa-list-check text-rose-500"></i> [파티 참가 수칙]
             </p>
-            <ul class="text-xs text-stone-600 space-y-3 font-light leading-relaxed">
+            <ul class="text-xs text-stone-600 space-y-3 font-light leading-normal">
               <li class="flex items-start gap-2">
                 <span class="font-bold text-rose-500">1.</span>
-                <span><strong>드레스 코드:</strong> Black or White <span class="text-[11px] text-stone-400 block mt-0.5">(회색까지도 가능~)</span></span>
+                <span><strong>드레스 코드:</strong> Black or White <span class="text-[11px] text-stone-400 block mt-1">(회색까지도 가능~)</span></span>
               </li>
               <li class="flex items-start gap-2">
                 <span class="font-bold text-rose-500">2.</span>
@@ -86,18 +97,20 @@
           </div>
         </div>
 
-        <div class="pt-6">
+        <!-- 주의사항 카드 상단 여백(mt-12) 확장 -->
+        <div class="mt-12">
           <div class="bg-amber-50/80 p-6 rounded-3xl border border-amber-200/80 text-xs text-amber-900 text-center space-y-2 shadow-sm">
             <p class="font-bold flex items-center justify-center gap-1.5 text-amber-800 text-xs">
               <i class="fa-solid fa-triangle-exclamation text-amber-600"></i> (주의) 축의금 봉투는 일단 넣어둬!
             </p>
-            <p class="font-light text-stone-600 text-[11px] leading-relaxed">
+            <p class="font-light text-stone-600 text-[11px] leading-normal">
               대신 우리한테 해줄 축하메시지 한문장 준비해와서 글로 남겨줘
             </p>
           </div>
         </div>
 
-        <div class="pt-8 pb-4">
+        <!-- 마무리 구호 상단 여백(mt-14) 확장 -->
+        <div class="mt-14 mb-4">
           <p class="text-base font-bold text-stone-800">
             10월 17일!!! 배고픈 상태로 헤쳐모여! 🎉🍻
           </p>
@@ -105,12 +118,13 @@
 
       </section>
 
-      <section class="px-6 space-y-6 pt-4">
+      <!-- 일시 & 장소 및 지도 영역 -->
+      <section class="px-6 space-y-8 pt-4">
         <div class="bg-stone-50 rounded-3xl p-7 border border-stone-100 space-y-5 text-sm">
           <h2 class="font-bold text-stone-800 text-base flex items-center gap-2">
             <i class="fa-regular fa-clock text-rose-400"></i> 일시 & 장소
           </h2>
-          <div class="space-y-3 text-stone-600 text-xs leading-relaxed">
+          <div class="space-y-3 text-stone-600 text-xs leading-normal">
             <p><span class="font-semibold text-stone-800">일시:</span> 2026. 10. 17. (Sat) 16:00 ~ 20:00</p>
             <p><span class="font-semibold text-stone-800">장소:</span> 신논현역 29펍 4호점</p>
             <p><span class="font-semibold text-stone-800">주소:</span> 서울특별시 강남구 강남대로110길 14</p>
@@ -118,7 +132,8 @@
           </div>
         </div>
 
-        <div class="rounded-3xl overflow-hidden border border-stone-200 shadow-sm h-64 relative">
+        <!-- 지도 (마커 핀) -->
+        <div class="rounded-3xl overflow-hidden border border-stone-200 shadow-sm h-64 relative mt-6">
           <iframe 
             src="https://maps.google.com/maps?q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EA%B0%95%EB%82%A8%EB%8C%80%EB%A1%9C110%EA%B8%B8%2014&t=&z=17&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
@@ -130,16 +145,18 @@
           </iframe>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 text-xs font-medium pt-1">
-          <a href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EA%B0%95%EB%82%A8%EB%8C%80%EB%A1%9C110%EA%B8%B8%2014" target="_blank" class="py-3 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-2xl flex items-center justify-center gap-1.5 hover:bg-emerald-100 transition shadow-sm">
+        <!-- 지도 앱 바로가기 버튼 -->
+        <div class="grid grid-cols-2 gap-3 text-xs font-medium pt-2">
+          <a href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EA%B0%95%EB%82%A8%EB%8C%80%EB%A1%9C110%EA%B8%B8%2014" target="_blank" class="py-3.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-2xl flex items-center justify-center gap-1.5 hover:bg-emerald-100 transition shadow-sm">
             <i class="fa-solid fa-location-dot"></i> 네이버 지도로 보기
           </a>
-          <a href="https://map.kakao.com/link/search/서울특별시 강남구 강남대로110길 14" target="_blank" class="py-3 bg-amber-50 text-amber-700 border border-amber-200 rounded-2xl flex items-center justify-center gap-1.5 hover:bg-amber-100 transition shadow-sm">
+          <a href="https://map.kakao.com/link/search/서울특별시 강남구 강남대로110길 14" target="_blank" class="py-3.5 bg-amber-50 text-amber-700 border border-amber-200 rounded-2xl flex items-center justify-center gap-1.5 hover:bg-amber-100 transition shadow-sm">
             <i class="fa-solid fa-map-pin"></i> 카카오 맵으로 보기
           </a>
         </div>
       </section>
 
+      <!-- Q&A 섹션 -->
       <section class="px-6 space-y-6">
         <h2 class="font-bold text-stone-800 text-base flex items-center gap-2">
           <i class="fa-regular fa-circle-question text-rose-400"></i> Q & A
@@ -151,7 +168,8 @@
         </div>
       </section>
 
-      <section class="px-6 pt-6 text-center">
+      <!-- 참석 버튼 -->
+      <section class="px-6 pt-8 text-center">
         <button onclick="openRsvpModal()" class="w-full py-4 bg-rose-500 hover:bg-rose-600 text-white font-medium rounded-2xl shadow-lg transition text-sm tracking-wide">
           참석 여부 제출하기
         </button>
@@ -159,12 +177,14 @@
 
     </div>
 
+    <!-- 풋터 -->
     <footer class="text-center text-[11px] text-stone-400 py-6 border-t border-stone-100">
       © 2026 Invi-Wedding Party All rights reserved.
     </footer>
 
   </div>
 
+  <!-- 참석 입력 팝업 모달 -->
   <div id="rsvp-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl w-full max-w-sm p-7 space-y-5 shadow-2xl relative">
       <button onclick="closeRsvpModal()" class="absolute top-5 right-5 text-stone-400 hover:text-stone-600">
@@ -268,7 +288,7 @@
               <div class="font-bold text-stone-800 flex items-center gap-2">
                 <span class="text-rose-500 font-bold">Q.</span> ${item.q}
               </div>
-              <div class="text-stone-600 pl-5 font-light leading-relaxed">
+              <div class="text-stone-600 pl-5 font-light leading-normal">
                 ${item.a}
               </div>
             </div>
