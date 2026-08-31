@@ -8,12 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-    }
-    .font-serif-title {
-      font-family: 'Playfair Display', serif;
-    }
+    body { font-family: 'Noto Sans KR', sans-serif; }
+    .font-serif-title { font-family: 'Playfair Display', serif; }
   </style>
 </head>
 <body class="bg-stone-50 text-stone-800 antialiased min-h-screen flex justify-center">
@@ -22,22 +18,21 @@
     
     <div class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-stone-100 flex justify-between items-center px-4 py-3">
       <span class="font-serif-title text-rose-500 font-bold tracking-wider">WEDDING PARTY</span>
-      <div class="flex gap-1 bg-stone-100 p-1 rounded-full text-xs font-medium">
-        <button id="btn-guest-tab" onclick="switchTab('guest')" class="px-3 py-1.5 rounded-full bg-white text-stone-900 shadow-sm transition">초대장</button>
-        <button id="btn-admin-tab" onclick="switchTab('admin')" class="px-3 py-1.5 rounded-full text-stone-500 hover:text-stone-900 transition">관리자</button>
-      </div>
+      <button onclick="openRsvpModal()" class="text-xs bg-rose-50 text-rose-600 px-3 py-1.5 rounded-full font-medium border border-rose-200">
+        참석 여부 등록
+      </button>
     </div>
 
-    <div id="guest-page" class="space-y-10 pb-10">
+    <div class="space-y-10 pb-10">
 
       <section class="text-center px-6 pt-8 space-y-4">
         <p class="font-serif-title text-rose-400 tracking-widest text-sm uppercase">Wedding Party Invitation</p>
         <h1 class="text-2xl font-bold tracking-tight text-stone-800">2026. 10. 17. (Sat)</h1>
         
-        <div class="w-full h-80 bg-stone-100 rounded-2xl flex flex-col items-center justify-center border-2 border-dashed border-stone-200 text-stone-400 relative overflow-hidden group">
+        <div class="w-full h-80 bg-stone-100 rounded-2xl flex flex-col items-center justify-center border-2 border-dashed border-stone-200 text-stone-400 relative overflow-hidden">
           <i class="fa-regular fa-image text-3xl mb-2"></i>
           <span class="text-xs">추후에 제공해 주실 메인 사진 들어갈 공간</span>
-          </div>
+        </div>
       </section>
 
       <section class="px-6 space-y-6 text-center">
@@ -87,67 +82,31 @@
         <h2 class="font-bold text-stone-800 text-base flex items-center gap-2">
           <i class="fa-regular fa-circle-question text-rose-400"></i> Q & A
         </h2>
-        <div id="guest-faq-list" class="space-y-3">
+        <div class="space-y-3">
+          <div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 space-y-1.5 text-xs">
+            <div class="font-bold text-stone-800 flex items-center gap-1.5">
+              <span class="text-rose-500 font-bold">Q.</span> 드레스코드는 무엇인가요?
+            </div>
+            <div class="text-stone-600 pl-4 font-light leading-relaxed">
+              자유롭고 편안한 파티 룩입니다! 너무 격식을 차리지 않으셔도 괜찮아요.
+            </div>
           </div>
+          <div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 space-y-1.5 text-xs">
+            <div class="font-bold text-stone-800 flex items-center gap-1.5">
+              <span class="text-rose-500 font-bold">Q.</span> 축의금이나 선물을 준비해야 하나요?
+            </div>
+            <div class="text-stone-600 pl-4 font-light leading-relaxed">
+              아닙니다! 축의금은 사양합니다. 따뜻한 축하의 메시지 한 문장만 준비해 와주세요.
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="px-6 pt-4 text-center">
         <button onclick="openRsvpModal()" class="w-full py-3.5 bg-rose-500 hover:bg-rose-600 text-white font-medium rounded-xl shadow-md transition text-sm">
-          참석 여부 제출/수정하기
+          참석 여부 제출하기
         </button>
       </section>
-
-    </div>
-
-    <div id="admin-page" class="hidden px-6 py-6 space-y-6">
-      
-      <div id="admin-login-box" class="bg-stone-50 p-6 rounded-2xl border border-stone-200 text-center space-y-4">
-        <i class="fa-solid fa-lock text-stone-400 text-2xl"></i>
-        <h2 class="font-bold text-stone-800 text-base">관리자 페이지 로그인</h2>
-        <input type="password" id="admin-pass-input" placeholder="비밀번호 (기본: 1234)" class="w-full px-4 py-2 border border-stone-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 text-center">
-        <button onclick="checkAdminPassword()" class="w-full py-2.5 bg-stone-800 text-white text-sm font-medium rounded-xl hover:bg-stone-900 transition">로그인</button>
-      </div>
-
-      <div id="admin-content" class="hidden space-y-8">
-        
-        <div class="space-y-3">
-          <div class="flex justify-between items-center">
-            <h3 class="font-bold text-stone-800 text-sm">참석 여부 수집 현황</h3>
-            <button onclick="logoutAdmin()" class="text-xs text-stone-400 underline">로그아웃</button>
-          </div>
-          <div class="grid grid-cols-3 gap-2 text-center text-xs">
-            <div class="bg-emerald-50 text-emerald-700 p-3 rounded-xl border border-emerald-100">
-              <div class="font-semibold">참석</div>
-              <div id="count-yes" class="text-base font-bold mt-1">0명</div>
-            </div>
-            <div class="bg-amber-50 text-amber-700 p-3 rounded-xl border border-amber-100">
-              <div class="font-semibold">보류</div>
-              <div id="count-hold" class="text-base font-bold mt-1">0명</div>
-            </div>
-            <div class="bg-rose-50 text-rose-700 p-3 rounded-xl border border-rose-100">
-              <div class="font-semibold">불참</div>
-              <div id="count-no" class="text-base font-bold mt-1">0명</div>
-            </div>
-          </div>
-
-          <div id="admin-rsvp-list" class="space-y-2 max-h-60 overflow-y-auto pr-1 text-xs">
-            </div>
-        </div>
-
-        <div class="space-y-4 pt-4 border-t border-stone-100">
-          <h3 class="font-bold text-stone-800 text-sm">Q&A 관리 (추가/수정/삭제)</h3>
-          
-          <div class="space-y-2 bg-stone-50 p-4 rounded-xl border border-stone-200">
-            <input type="text" id="new-q-input" placeholder="질문 입력 (예: 드레스코드는 무엇인가요?)" class="w-full px-3 py-2 border border-stone-300 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-rose-400">
-            <textarea id="new-a-input" rows="2" placeholder="답변 입력" class="w-full px-3 py-2 border border-stone-300 rounded-lg text-xs focus:outline-none focus:ring-1 focus:ring-rose-400 resize-none"></textarea>
-            <button onclick="addFaq()" class="w-full py-2 bg-stone-800 text-white rounded-lg text-xs font-medium hover:bg-stone-900 transition">Q&A 항목 추가하기</button>
-          </div>
-
-          <div id="admin-faq-list" class="space-y-2 text-xs">
-            </div>
-        </div>
-
-      </div>
 
     </div>
 
@@ -157,7 +116,7 @@
 
   </div>
 
-  <div id="rsvp-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity">
+  <div id="rsvp-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl w-full max-w-sm p-6 space-y-4 shadow-2xl relative">
       <button onclick="closeRsvpModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600">
         <i class="fa-solid fa-xmark text-lg"></i>
@@ -199,7 +158,7 @@
           </div>
         </div>
 
-        <button type="submit" class="w-full py-3 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-xl shadow-md transition text-xs mt-2">
+        <button type="submit" id="submit-btn" class="w-full py-3 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-xl shadow-md transition text-xs mt-2">
           제출하기
         </button>
       </form>
@@ -207,30 +166,15 @@
   </div>
 
   <script>
-    // 샘플 Q&A 데이터
-    let faqs = [
-      { id: 1, q: "드레스코드는 무엇인가요?", a: "자유롭고 편안한 파티 루룩입니다! 너무 격식을 차리지 않으셔도 괜찮아요." },
-      { id: 2, q: "축의금이나 선물을 준비해야 하나요?", a: "아닙니다! 축의금은 사양합니다. 따뜻한 축하의 메시지 한 문장만 준비해 와주세요." }
-    ];
+    // ★ 1단계에서 발급받은 구글 웹 앱 URL을 아래에 대입해 주세요.
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxub_Ih0HB8ZVEB7pQh3rn4tizLlRtdocpm3PxK0bFuLBmxhr27yB3f70klmkIsnoT1XA/exec";
 
-    // RSVP 저장소 (로컬 스토리지 연동)
-    let rsvpList = JSON.parse(localStorage.getItem('wedding_rsvps')) || [
-      { name: "김철수", count: "2", status: "참석", date: "2026.09.01" },
-      { name: "이영희", count: "1", status: "보류", date: "2026.09.01" }
-    ];
-
-    let isAdminLoggedIn = false;
-
-    // 페이지 로드 시 초기화
     window.onload = function() {
-      renderGuestFaq();
-      // 접속 시 팝업 띄우기 (이전에 제출하지 않은 경우)
       if (!localStorage.getItem('rsvp_submitted')) {
         openRsvpModal();
       }
     };
 
-    // 팝업 조작
     function openRsvpModal() {
       document.getElementById('rsvp-modal').classList.remove('hidden');
     }
@@ -238,148 +182,39 @@
       document.getElementById('rsvp-modal').classList.add('hidden');
     }
 
-    // RSVP 제출
     function submitRsvp(e) {
       e.preventDefault();
+      const submitBtn = document.getElementById('submit-btn');
       const name = document.getElementById('rsvp-name').value.trim();
       const count = document.getElementById('rsvp-count').value;
       const status = document.querySelector('input[name="rsvp-status"]:checked').value;
 
       if (!name) return;
 
-      const newEntry = {
-        name: name,
-        count: count,
-        status: status,
-        date: new Date().toLocaleDateString()
-      };
+      submitBtn.disabled = true;
+      submitBtn.innerText = "제출 중...";
 
-      rsvpList.unshift(newEntry);
-      localStorage.setItem('wedding_rsvps', JSON.stringify(rsvpList));
-      localStorage.setItem('rsvp_submitted', 'true');
+      const data = { name: name, count: count, status: status };
 
-      alert(`${name}님, 소중한 응답이 제출되었습니다!`);
-      closeRsvpModal();
-      if (isAdminLoggedIn) renderAdminData();
-    }
-
-    // 탭 전환
-    function switchTab(tab) {
-      const guestPage = document.getElementById('guest-page');
-      const adminPage = document.getElementById('admin-page');
-      const btnGuest = document.getElementById('btn-guest-tab');
-      const btnAdmin = document.getElementById('btn-admin-tab');
-
-      if (tab === 'guest') {
-        guestPage.classList.remove('hidden');
-        adminPage.classList.add('hidden');
-        btnGuest.className = "px-3 py-1.5 rounded-full bg-white text-stone-900 shadow-sm transition";
-        btnAdmin.className = "px-3 py-1.5 rounded-full text-stone-500 hover:text-stone-900 transition";
-      } else {
-        guestPage.classList.add('hidden');
-        adminPage.classList.remove('hidden');
-        btnAdmin.className = "px-3 py-1.5 rounded-full bg-white text-stone-900 shadow-sm transition";
-        btnGuest.className = "px-3 py-1.5 rounded-full text-stone-500 hover:text-stone-900 transition";
-      }
-    }
-
-    // 관리자 로그인
-    function checkAdminPassword() {
-      const pass = document.getElementById('admin-pass-input').value;
-      if (pass === '1234') { // 기본 비밀번호 1234
-        isAdminLoggedIn = true;
-        document.getElementById('admin-login-box').classList.add('hidden');
-        document.getElementById('admin-content').classList.remove('hidden');
-        renderAdminData();
-      } else {
-        alert('비밀번호가 올바르지 않습니다. (기본 비밀번호: 1234)');
-      }
-    }
-
-    function logoutAdmin() {
-      isAdminLoggedIn = false;
-      document.getElementById('admin-login-box').classList.remove('hidden');
-      document.getElementById('admin-content').classList.add('hidden');
-      document.getElementById('admin-pass-input').value = '';
-    }
-
-    // FAQ 출력 (손님용)
-    function renderGuestFaq() {
-      const container = document.getElementById('guest-faq-list');
-      container.innerHTML = faqs.map(item => `
-        <div class="p-4 rounded-2xl bg-stone-50 border border-stone-100 space-y-1.5 text-xs">
-          <div class="font-bold text-stone-800 flex items-center gap-1.5">
-            <span class="text-rose-500 font-bold">Q.</span> ${item.q}
-          </div>
-          <div class="text-stone-600 pl-4 font-light leading-relaxed">
-            ${item.a}
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // 관리자 데이터 출력
-    function renderAdminData() {
-      // 통계 계산
-      let yes = 0, hold = 0, no = 0;
-      rsvpList.forEach(r => {
-        if (r.status === '참석') yes += Number(r.count);
-        else if (r.status === '보류') hold++;
-        else if (r.status === '불참') no++;
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        alert(`${name}님, 참석 응답이 정상적으로 등록되었습니다!`);
+        localStorage.setItem('rsvp_submitted', 'true');
+        closeRsvpModal();
+      })
+      .catch(error => {
+        alert("제출 도중 오류가 발생했습니다. 다시 시도해 주세요.");
+        console.error("Error:", error);
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "제출하기";
       });
-
-      document.getElementById('count-yes').innerText = `${yes}명`;
-      document.getElementById('count-hold').innerText = `${hold}건`;
-      document.getElementById('count-no').innerText = `${no}건`;
-
-      // RSVP 목록
-      const rsvpContainer = document.getElementById('admin-rsvp-list');
-      rsvpContainer.innerHTML = rsvpList.map(r => `
-        <div class="flex justify-between items-center p-3 bg-stone-50 rounded-xl border border-stone-100">
-          <div>
-            <span class="font-bold text-stone-800 mr-2">${r.name}</span>
-            <span class="text-[10px] text-stone-400">${r.date}</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 rounded-full font-semibold text-[10px] ${
-              r.status === '참석' ? 'bg-emerald-100 text-emerald-700' :
-              r.status === '보류' ? 'bg-amber-100 text-amber-700' : 'bg-rose-100 text-rose-700'
-            }">${r.status} (${r.count}명)</span>
-          </div>
-        </div>
-      `).join('');
-
-      // FAQ 목록 (관리용)
-      const faqContainer = document.getElementById('admin-faq-list');
-      faqContainer.innerHTML = faqs.map(item => `
-        <div class="p-3 bg-stone-50 rounded-xl border border-stone-100 flex justify-between items-start gap-2">
-          <div>
-            <div class="font-bold text-stone-800">Q. ${item.q}</div>
-            <div class="text-stone-600 text-[11px] mt-0.5">A. ${item.a}</div>
-          </div>
-          <button onclick="deleteFaq(${item.id})" class="text-rose-500 hover:text-rose-700 text-xs">삭제</button>
-        </div>
-      `).join('');
-    }
-
-    // FAQ 추가/삭제
-    function addFaq() {
-      const q = document.getElementById('new-q-input').value.trim();
-      const a = document.getElementById('new-a-input').value.trim();
-      if (!q || !a) return alert('질문과 답변을 모두 입력해주세요.');
-
-      faqs.push({ id: Date.now(), q: q, a: a });
-      document.getElementById('new-q-input').value = '';
-      document.getElementById('new-a-input').value = '';
-
-      renderGuestFaq();
-      renderAdminData();
-    }
-
-    function deleteFaq(id) {
-      faqs = faqs.filter(item => item.id !== id);
-      renderGuestFaq();
-      renderAdminData();
     }
   </script>
 </body>
