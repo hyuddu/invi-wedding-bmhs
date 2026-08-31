@@ -41,7 +41,7 @@
         <h1 class="text-2xl font-bold tracking-tight text-stone-800">2026. 10. 17. (Sat)</h1>
         <p class="text-sm font-semibold text-rose-500 mt-1">16:00 ~ 20:00 <span class="text-xs font-normal text-stone-400">(퇴근은 자유)</span></p>
         
-        <!-- 1번 반영: 날짜와 사진 사이 간격 확장 (3줄 정도: mt-12) -->
+        <!-- 날짜와 사진 사이 간격 -->
         <div class="w-full h-80 bg-stone-100 rounded-3xl relative overflow-hidden shadow-sm border border-stone-100 mt-12">
           <img src="main.jpg" alt="최병민 김현수 메인 사진" class="w-full h-full object-cover">
         </div>
@@ -50,7 +50,7 @@
       <!-- 소개글 및 파티 수칙 -->
       <section class="px-6 text-center">
         
-        <!-- 2번 반영: 사진과 From waves 사이 간격 줄이기 (1줄 정도: mt-4) -->
+        <!-- From waves... 박스 -->
         <div class="bg-rose-50/60 p-7 rounded-3xl border border-rose-100/80 space-y-3 mt-4">
           <p class="font-serif-title font-bold text-rose-500 text-base tracking-wide">“From waves🏄 to forever...❤️”</p>
           <p class="text-xs text-stone-600 leading-normal">
@@ -59,9 +59,9 @@
           </p>
         </div>
 
-        <!-- 3번 반영: "우리~ 결혼해요~" 앞에 20줄 정도 간격 대폭 추가 (my-36) -->
-        <div class="my-36">
-          <div class="w-12 h-[1px] bg-rose-200 mx-auto mb-16"></div>
+        <!-- 간격을 기존 36에서 절반인 18로 축소 -->
+        <div class="my-18">
+          <div class="w-12 h-[1px] bg-rose-200 mx-auto mb-8"></div>
           
           <div class="space-y-4 text-sm text-stone-700">
             <p class="font-bold text-lg text-rose-600">우리~ 결혼해요~ 🎉</p>
@@ -73,7 +73,7 @@
           </div>
         </div>
 
-        <!-- 4번 반영: [파티 참가 수칙] 박스 내부 하단에 주의사항 통합 -->
+        <!-- [파티 참가 수칙] 박스 -->
         <div class="mt-12">
           <div class="bg-stone-50 p-7 rounded-3xl border border-stone-200/70 text-left space-y-4 shadow-sm">
             <p class="font-bold text-stone-800 text-xs flex items-center gap-2 mb-2">
@@ -95,7 +95,7 @@
               </li>
             </ul>
 
-            <!-- 수칙들과 한 칸 띄우고, 번호 없이 가운데 정렬 및 글꼴 색 설정된 주의문구 -->
+            <!-- 주의 문구 -->
             <div class="pt-5 border-t border-stone-200/60 mt-5 text-center">
               <p class="text-xs font-medium text-amber-700 leading-relaxed">
                 <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1"></i>
@@ -106,13 +106,11 @@
           </div>
         </div>
 
-        <!-- 5번 반영: 마지막 멘트 간격 대폭 확장(20줄 정도: mt-36) + 바운스 효과 & 포인트 스타일링 -->
+        <!-- 마지막 멘트: 버튼 효과 없애고 텍스트 크기 커졌다 작아지는(animate-pulse) 효과 적용 -->
         <div class="mt-36 mb-6">
-          <div class="inline-block bg-gradient-to-r from-rose-500 to-amber-500 text-white px-6 py-4 rounded-full shadow-lg transform transition duration-300 hover:scale-105 animate-bounce">
-            <p class="text-sm font-bold tracking-wide">
-              10월 17일!!! 배고픈 상태로 헤쳐모여! 🎉🍻
-            </p>
-          </div>
+          <p class="text-base font-bold text-stone-800 animate-pulse tracking-wide inline-block">
+            10월 17일!!! 배고픈 상태로 헤쳐모여! 🎉🍻
+          </p>
         </div>
 
       </section>
