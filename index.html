@@ -106,9 +106,10 @@
           </p>
           
           <ul class="text-xs text-stone-600 space-y-2.5 font-light leading-relaxed">
+            <!-- 1번 변경: 회색도 가능~ 같은 줄로 올림 -->
             <li class="flex items-start gap-2">
               <span class="font-bold text-rose-500">1.</span>
-              <span><strong>드레스 코드:</strong> Black or White <span class="text-[11px] text-stone-400 block mt-0.5">(회색까지도 가능~)</span></span>
+              <span><strong>드레스 코드:</strong> Black or White <span class="text-[11px] text-stone-400">(회색까지도 가능~)</span></span>
             </li>
             <li class="flex items-start gap-2">
               <span class="font-bold text-rose-500">2.</span>
@@ -129,15 +130,6 @@
               <i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1"></i>
               축의금 봉투는 일단 넣어둬!<br>
               <span class="text-[11px] text-stone-400 font-light block mt-0.5">대신 우리한테 해줄 축하메시지 한문장 준비해와서 글로 남겨줘</span>
-            </p>
-          </div>
-        </div>
-
-        <!-- 헤쳐모여 카드 (펄스 효과) -->
-        <div class="text-center py-1">
-          <div class="bg-gradient-to-r from-rose-50 to-amber-50 border border-rose-200/60 p-3.5 rounded-2xl shadow-sm inline-block animate-pulse">
-            <p class="text-xs font-bold text-stone-800 tracking-wide">
-              ✨ 10월 17일 오후 4시 신논현역에서!! 배고픈 상태로 헤쳐모여! 🎉🍻
             </p>
           </div>
         </div>
@@ -182,19 +174,41 @@
         </div>
       </section>
 
-      <!-- PAGE 5: Q&A & 참석 버튼 -->
-      <section class="snap-section w-full flex flex-col justify-between px-6 pt-20 pb-8 bg-stone-50/30">
-        <div class="space-y-4">
+      <!-- PAGE 5: Q&A -->
+      <section class="snap-section w-full flex flex-col justify-center px-6 pt-20 pb-8 bg-stone-50/30">
+        <div class="space-y-4 my-auto">
           <h2 class="font-bold text-stone-800 text-sm flex items-center gap-2">
             <i class="fa-regular fa-circle-question text-rose-400"></i> Q & A
           </h2>
-          <div id="qna-container" class="space-y-3 max-h-[50vh] overflow-y-auto pr-1">
+          <div id="qna-container" class="space-y-3 max-h-[60vh] overflow-y-auto pr-1">
             <div class="p-4 rounded-2xl bg-white border border-stone-100 text-xs text-stone-400 text-center">
               Q&A를 불러오는 중입니다...
             </div>
           </div>
         </div>
+      </section>
 
+      <!-- PAGE 6: 2, 3, 4, 5번 반영 - 마지막 멘트 독립 페이지 + 화살표 + 참석 여부 버튼 -->
+      <section class="snap-section w-full flex flex-col justify-between px-6 pt-20 pb-8 bg-gradient-to-b from-stone-50 via-rose-50/20 to-white text-center">
+        
+        <div class="my-auto space-y-8">
+          <!-- 헤쳐모여 카드 (신논현역에서!! 뒤 엔터 추가) -->
+          <div class="bg-gradient-to-r from-rose-50 to-amber-50 border border-rose-200/80 p-6 rounded-3xl shadow-md inline-block animate-pulse max-w-xs">
+            <p class="text-sm font-bold text-stone-800 tracking-wide leading-relaxed">
+              ✨ 10월 17일 오후 4시<br>
+              신논현역에서!!<br>
+              배고픈 상태로 헤쳐모여! 🎉🍻
+            </p>
+          </div>
+
+          <!-- 멋진 화살표 효과 -->
+          <div class="text-rose-400 text-lg animate-bounce flex flex-col items-center gap-1">
+            <span class="text-[11px] font-semibold tracking-wider text-rose-500">참석 응답하러 가기</span>
+            <i class="fa-solid fa-angles-down text-xl"></i>
+          </div>
+        </div>
+
+        <!-- 하단 참석 여부 제출 버튼 및 풋터 -->
         <div class="space-y-4">
           <button onclick="openRsvpModal()" class="w-full py-4 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-2xl shadow-lg transition text-sm tracking-wide">
             참석 여부 제출하기
@@ -204,6 +218,7 @@
             © 2026 Invi-Wedding Party All rights reserved.
           </footer>
         </div>
+
       </section>
 
     </div>
